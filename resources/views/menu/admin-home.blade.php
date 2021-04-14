@@ -15,7 +15,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Listar</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ url('admin/campus-cadastro') }}">Cadastrar</a></li>
+            <li><a class="dropdown-item" href="{{ url('admin/campus/cadastro') }}">Cadastrar</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Editar</a></li>
           </ul>
@@ -27,7 +27,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Listar</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ url('admin/edital-cadastro') }}">Cadastrar</a></li>
+            <li><a class="dropdown-item" href="{{ url('admin/edital/cadastro') }}">Cadastrar</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Editar</a></li>
           </ul>
@@ -39,7 +39,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Listar</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ url('admin/professor-cadastro') }}">Cadastrar</a></li>
+            <li><a class="dropdown-item" href="{{ url('admin/professor/cadastro') }}">Cadastrar</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Editar</a></li>
           </ul>
@@ -51,7 +51,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Listar</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ url('admin/curso-cadastro') }}">Cadastrar</a></li>
+            <li><a class="dropdown-item" href="{{ url('admin/curso/cadastro') }}">Cadastrar</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Editar</a></li>
           </ul>
@@ -63,7 +63,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Listar</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ url('admin/disciplina-cadastro') }}">Cadastrar</a></li>
+            <li><a class="dropdown-item" href="{{ url('admin/disciplina/cadastro') }}">Cadastrar</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Editar</a></li>
           </ul>
@@ -75,7 +75,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Listar</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ url('admin/alocacao-cadastro') }}">Cadastrar</a></li>
+            <li><a class="dropdown-item" href="{{ url('admin/alocacao/cadastro') }}">Cadastrar</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Editar</a></li>
           </ul>
@@ -87,12 +87,22 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Listar</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ url('admin/usuario-cadastro') }}">Cadastrar</a></li>
+            <li><a class="dropdown-item" href="{{ url('admin/usuario/cadastro') }}">Cadastrar</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Editar</a></li>
           </ul>
         </li>
-        
+        <li class="nav-item">
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+
+            <a class="logout nav-link" :href="route('logout')"
+                    onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                {{ __('Sair') }}
+            </a>
+          </form>
+        </li>
       </ul>
     </div>
   </div>

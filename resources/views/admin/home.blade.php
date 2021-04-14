@@ -10,6 +10,7 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/parfor.css') }}">
 </head>
 <body>
     
@@ -19,18 +20,20 @@
     
     @component('menu.admin-home')
     @endcomponent
+    <br>
+    <div class="container len1">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
 
-    <div class="container">
-        <div class="box-admin">
-
-            <main role='main'>
-                @hasSection('body_page')
-                @yield('body_page')
-                @endif
-            </main>
+                <main role='main'>
+                    @hasSection('body_page')
+                    @yield('body_page')
+                    @endif
+                </main>
 
 
-        </div>               
+            </div>               
+        </div>
     </div>
     
 
