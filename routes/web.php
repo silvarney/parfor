@@ -2,49 +2,32 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('home');
 });
+/*
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/admin', function () {
     return view('admin/home');
 });
+*/
 
-Route::get('/admin/campus-cadastro', function () {
-    return view('admin/campus-cadastro');
+Route::middleware(['auth'])->prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function () {
+    
+    Route::get('/', 'AdminController@index');
+    Route::get('/campus/cadastro', 'AdminController@cadastro_campus');
+    Route::get('/edital/cadastro', 'AdminController@cadastro_edital');
+    Route::get('/professor/cadastro', 'AdminController@cadastro_professor');
+    Route::get('/curso/cadastro', 'AdminController@cadastro_curso');
+    Route::get('/disciplina/cadastro', 'AdminController@cadastro_disciplina');
+    Route::get('/alocacao/cadastro', 'AdminController@cadastro_alocacao');
+    Route::get('/usuario/cadastro', 'AdminController@cadastro_usuario');
+
+
 });
 
-Route::get('/admin/edital-cadastro', function () {
-    return view('admin/edital-cadastro');
-});
-
-Route::get('/admin/professor-cadastro', function () {
-    return view('admin/professor-cadastro');
-});
-
-Route::get('/admin/curso-cadastro', function () {
-    return view('admin/curso-cadastro');
-});
-
-Route::get('/admin/disciplina-cadastro', function () {
-    return view('admin/disciplina-cadastro');
-});
-
-Route::get('/admin/alocacao-cadastro', function () {
-    return view('admin/alocacao-cadastro');
-});
-
-Route::get('/admin/usuario-cadastro', function () {
-    return view('admin/usuario-cadastro');
-});
