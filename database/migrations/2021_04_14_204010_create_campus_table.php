@@ -15,12 +15,12 @@ class CreateCampusTable extends Migration
     {
         Schema::create('campus', function (Blueprint $table) {
             $table->id();
-            $table->string('uf', 2);
-            $table->string('cidade');
+            $table->string('nome')->unique();
+            $table->string('endereco', 300);
             $table->string('bairro');
-            $table->string('rua');
-            $table->string('numero');
-            $table->string('complemento', 300);
+            $table->string('cidade');
+            $table->string('cep');
+            $table->string('uf', 2);
 
             $table->timestamps();
         });

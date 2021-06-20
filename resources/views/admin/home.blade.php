@@ -13,14 +13,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/parfor.css') }}">
 </head>
 <body>
-    
+
     <div class="col-4 align-middle" >
         <img class="ima-logo" src="{{ asset('img/parfor.png') }}">
     </div>
-    
+
     @component('menu.admin-home')
     @endcomponent
     <br>
+
+    @component('alertas')
+    @endcomponent
+
+    <br>
+
     <div class="container len1">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -32,12 +38,11 @@
                 </main>
 
 
-            </div>               
+            </div>
         </div>
     </div>
-    
 
-    <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+
     <script src="{{ asset('js/bootstrap.js') }}"></script>
 </body>
 </html>
