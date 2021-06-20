@@ -4,45 +4,35 @@
 
 @section('body_page')
 
-    <div class="row">
-        <div class="col-8">
-            <label for="exampleFormControlInput1" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nome completo">
-        </div>
-        <div class="col-4">
-            <label for="exampleFormControlInput1" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="seu@email">
-        </div>
+    <!--cadastrar cpf do professor-->
+    <div class="shadow p-3 mb-5 bg-body rounded cadCpf">
+        <form name="formCpf" action="{{ route('admin.created-professor') }}" method="post">
+            @csrf
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="inputProfessorCpf" class="col-form-label">CPF e Campus do Professor</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="inputProfessorCpf" name="cpf" class="form-control" aria-describedby="cpfHelpInline">
+                </div>
+                <div class="col-auto">
+                    <select class="form-select" aria-label="Default select example" name="campus_id">
+                        @foreach (session('campus') as $item)
+                            <option value="{{ $item->id }}">{{ $item->nome }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-success">Inserir</button>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <br>
+    <!--cadastrar geral do professor-->
+    @hasSection('form_professor')
+        @yield('form_professor')
+    @endif
 
-    <div class="row">        
-        <div class="col-4">
-            <label for="exampleFormControlInput1" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="000.000.000-00">
-        </div>
-        <div class="col">
-            <label for="exampleDataList" class="form-label">Campus</label>
-            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Selecione um Campus...">
-            <datalist id="datalistOptions">
-                <option value="San Francisco">
-                <option value="New York">
-                <option value="Seattle">
-                <option value="Los Angeles">
-                <option value="Chicago">
-            </datalist>
-        </div>
-    </div>
 
-    <br>
-
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Endereço</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-
-    <br>
-
-    <button type="button" class="btn btn-success">Salvar</button>    
 @stop

@@ -15,17 +15,23 @@ class CreateProfessoresTable extends Migration
     {
         Schema::create('professores', function (Blueprint $table) {
             $table->id();
-
-            $table->string('cpf');
-            $table->string('uf', 2);
-            $table->string('cidade');
-            $table->string('bairro');
-            $table->string('rua');
-            $table->string('numero')->nullable();
-            $table->string('complemento', 300)->nullable();
-
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('nome')->nullable();
+            $table->string('sexo')->nullable();
+            $table->string('cpf')->unique();
+            $table->string('rg')->nullable();
+            $table->string('emissao')->nullable();
+            $table->string('nascimento')->nullable();
+            $table->string('nacionalidade')->nullable();
+            $table->string('naturalidade')->nullable();
+            $table->string('endereco', 300)->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('cep')->nullable();
+            $table->string('uf', 2)->nullable();
+            $table->string('pais')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('portador_necessidade')->nullable();
 
             $table->bigInteger('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus')->onDelete('cascade');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEditaisTable extends Migration
+class CreateDisciplinasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateEditaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('editais', function (Blueprint $table) {
+        Schema::create('disciplinas', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
-            $table->string('titulo');
-            $table->date('abertura');
-            $table->date('termino');
+
+            $table->string('nome');
+            $table->integer('carga_horaria');
+            $table->date('periodo_inicio');
+            $table->date('periodo_termino');
 
             $table->timestamps();
         });
@@ -31,6 +32,6 @@ class CreateEditaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('editais');
+        Schema::dropIfExists('disciplinas');
     }
 }

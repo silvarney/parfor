@@ -19,6 +19,10 @@
     width: auto;
 }
 
+.lista-formacao{
+    padding: 2% !important;
+}
+
 a.logout:hover{
     cursor: pointer !important;
 }
