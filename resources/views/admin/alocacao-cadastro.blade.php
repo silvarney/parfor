@@ -1,6 +1,6 @@
 @extends('admin.home')
 
-@section('title', 'Cadastro Disciplina')
+@section('title', 'Alocação Professor')
 
 @section('body_page')
 
@@ -58,10 +58,10 @@
             @foreach ($alocacoes as $item)
             <div class="row">
                 <div class="col">
-                    {{ $item->edital_numero }} - {{ $item->professor_nome }} - {{ $item->disciplinas_nome }}
+                    {{ $item->edital_numero }} - {{ $item->disciplinas_nome }} - {{ $item->professor_nome }} - {{ $item->pontos }}
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="delet({{ $item->id }})">Excluir</button>
+                    <a href="{{ route('admin.alocacao-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
                 </div>
             </div>
             @endforeach

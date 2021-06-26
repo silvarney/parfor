@@ -19,4 +19,11 @@ class UsuarioController extends Controller
 
         return redirect('/admin/usuario')->with('success', 'Usuário cadastrado com sucesso!');
     }
+
+    public function destroy($id)
+    {
+        User::where('id', $id)->update(['status' => 'desativado']);
+
+        return redirect('admin/usuario')->with('delete', 'Usuário desativado com sucesso!');
+    }
 }

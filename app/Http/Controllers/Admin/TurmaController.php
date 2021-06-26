@@ -17,4 +17,11 @@ class TurmaController extends Controller
         return redirect('/admin/turma')->with('success', 'Turma cadastrada com sucesso!');
 
     }
+
+    public function destroy($id)
+    {
+        Turma::where('id', $id)->update(['status' => 'desativado']);
+
+        return redirect('admin/turma')->with('delete', 'Turma desativada com sucesso!');
+    }
 }

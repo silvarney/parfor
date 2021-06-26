@@ -4,9 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
+/*
 Route::get('/', function () {
     return view('home');
 });
+*/
+Route::get('/', 'App\Http\Controllers\PublicoController@index')->name('index');
+Route::post('/pesquisa-edital', 'App\Http\Controllers\PublicoController@pesquisa')->name('pesquisa-edital');
 
 Route::middleware(['auth'])->prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function () {
     //views
@@ -41,6 +45,13 @@ Route::middleware(['auth'])->prefix('admin')->namespace('App\Http\Controllers\Ad
     //update
     Route::post('/professor/update', 'ProfessorController@update')->name('admin.update-professor');
 
-
+    //delete
+    Route::get('/campus/del/{id}', 'CampusController@destroy')->name('admin.campus-del');
+    Route::get('/edital/del/{id}', 'EditalController@destroy')->name('admin.edital-del');
+    Route::get('/curso/del/{id}', 'CursoController@destroy')->name('admin.curso-del');
+    Route::get('/disciplina/del/{id}', 'DisciplinaController@destroy')->name('admin.disciplina-del');
+    Route::get('/turma/del/{id}', 'TurmaController@destroy')->name('admin.turma-del');
+    Route::get('/alocacao/del/{id}', 'AlocacaoController@destroy')->name('admin.alocacao-del');
+    Route::get('/usuario/del/{id}', 'UsuarioController@destroy')->name('admin.usuario-del');
 });
 

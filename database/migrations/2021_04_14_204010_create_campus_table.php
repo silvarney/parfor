@@ -21,6 +21,7 @@ class CreateCampusTable extends Migration
             $table->string('cidade');
             $table->string('cep');
             $table->string('uf', 2);
+            $table->string('status')->nullable();
 
             $table->timestamps();
         });

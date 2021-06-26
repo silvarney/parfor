@@ -32,6 +32,7 @@ class CreateProfessoresTable extends Migration
             $table->string('telefone')->nullable();
             $table->string('email')->nullable();
             $table->string('portador_necessidade')->nullable();
+            $table->string('status')->nullable();
 
             $table->bigInteger('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus')->onDelete('cascade');

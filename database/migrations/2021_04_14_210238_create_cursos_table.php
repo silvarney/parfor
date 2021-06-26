@@ -20,6 +20,7 @@ class CreateCursosTable extends Migration
             $table->integer('carga_horaria');
             $table->date('inicio');
             $table->date('termino');
+            $table->string('status')->nullable();
 
             $table->bigInteger('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus')->onDelete('cascade');

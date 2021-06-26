@@ -16,6 +16,7 @@ class CreateDisciplinaProfessoresTable extends Migration
         Schema::create('disciplina_professores', function (Blueprint $table) {
             $table->id();
             $table->integer('pontos');
+            $table->string('status')->nullable();
 
             $table->bigInteger('edital_id')->unsigned();
             $table->foreign('edital_id')->references('id')->on('editais')->onDelete('cascade');

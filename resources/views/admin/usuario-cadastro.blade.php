@@ -49,7 +49,7 @@
                     {{ $item->nome }} - {{ $item->email }}
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="delet({{ $item->id }})">Excluir</button>
+                    <a href="{{ route('admin.usuario-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
                 </div>
             </div>
             @endforeach

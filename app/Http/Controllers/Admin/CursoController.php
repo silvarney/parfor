@@ -84,8 +84,9 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-        //implementar turma primeiro
-        //Curso::where('id', $id)->delete();
+        Curso::where('id', $id)->update(['status' => 'desativado']);
+
+        return redirect('admin/curso')->with('delete', 'Curso desativado com sucesso!');
 
     }
 }
