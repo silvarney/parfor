@@ -15,4 +15,11 @@ class AlocacaoController extends Controller
 
         return redirect('/admin/alocacao')->with('success', 'Alocação realizada com sucesso');
     }
+
+    public function destroy($id)
+    {
+        Alocacao::where('id', $id)->update(['status' => 'desativado']);
+
+        return redirect('admin/alocacao')->with('delete', 'Alocacao desativado com sucesso!');
+    }
 }

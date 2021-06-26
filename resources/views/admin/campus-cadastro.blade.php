@@ -45,4 +45,26 @@
             <button type="submit" class="btn btn-success">Salvar</button>
         </form>
     </div>
+
+    <!--lista de campus-->
+    <div class="card listFormacoes">
+        <div class="card-header">
+            Campus
+        </div>
+        <div class="lista-formacao">
+            @foreach ($campus as $item)
+            <div class="row">
+                <div class="col">
+                    {{ $item->nome }} - {{ $item->cep }}
+                </div>
+                <div class="col-2">
+                    <a href="{{ route('admin.campus-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
+                </div>
+            </div>
+            @endforeach
+
+        </div>
+    </div>
+
+    <br>.
 @stop

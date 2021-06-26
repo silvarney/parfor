@@ -21,8 +21,9 @@ class DisciplinaController extends Controller
 
     public function destroy($id)
     {
-        //implementar turma primeiro
-        //Curso::where('id', $id)->delete();
+        Disciplina::where('id', $id)->update(['status' => 'desativado']);
+
+        return redirect('admin/disciplina')->with('delete', 'Disciplina desativado com sucesso!');
 
     }
 

@@ -73,6 +73,8 @@ class EditalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Edital::where('id', $id)->update(['status' => 'desativado']);
+
+        return redirect('admin/edital')->with('delete', 'Edital desativado com sucesso!');
     }
 }

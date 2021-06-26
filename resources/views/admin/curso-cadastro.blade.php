@@ -57,7 +57,7 @@
                     - {{ $item->nome }}
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="delet({{ $item->id }})">Excluir</button>
+                    <a href="{{ route('admin.curso-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
                 </div>
             </div>
             @endforeach
@@ -66,10 +66,4 @@
     </div>
 
     <br>.
-    <script>
-        var delet = (function(id){
-            alert(id);
-            window.location.href = "admin/curso/del/?id="+id;
-        });
-    </script>
 @stop

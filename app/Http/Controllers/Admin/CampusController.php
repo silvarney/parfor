@@ -33,6 +33,8 @@ class CampusController extends Controller
 
     public function destroy($id)
     {
-        //
+        Campus::where('id', $id)->update(['status' => 'desativado']);
+
+        return redirect('admin/campus')->with('delete', 'Campus desativado com sucesso!');
     }
 }

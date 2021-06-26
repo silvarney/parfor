@@ -19,6 +19,7 @@ class CreateEditaisTable extends Migration
             $table->string('titulo');
             $table->date('abertura');
             $table->date('termino');
+            $table->string('status')->nullable();
 
             $table->timestamps();
         });

@@ -20,6 +20,7 @@ class CreateFormacoesTable extends Migration
             $table->string('pais');
             $table->string('cidade');
             $table->string('uf');
+            $table->string('status')->nullable();
 
             $table->bigInteger('professor_id')->unsigned();
             $table->foreign('professor_id')->references('id')->on('professores')->onDelete('cascade');

@@ -20,6 +20,7 @@ class CreateDisciplinasTable extends Migration
             $table->integer('carga_horaria');
             $table->date('periodo_inicio');
             $table->date('periodo_termino');
+            $table->string('status')->nullable();
 
             $table->timestamps();
         });
