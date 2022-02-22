@@ -1,0 +1,32 @@
+
+.ima-logo{
+    width: 100% !important;
+    padding-top: 3% !important;
+    padding-bottom: 3% !important;
+}
+.txt_ufra{
+    font-size: 22px !important;
+    background-color: #00420c !important;
+    color: white !important;
+    padding-left: 3% !important;
+}
+
+.box-admin{
+    padding-top: 5% !important;
+}
+
+.logo_login{
+    width: auto;
+}
+
+.lista-formacao{
+    padding: 2% !important;
+}
+
+a.logout:hover{
+    cursor: pointer !important;
+}
+
+.list-btn {
+    padding-bottom: 5px;
+}
