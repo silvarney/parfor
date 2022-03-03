@@ -15,7 +15,7 @@ class CreateDisciplinaProfessoresTable extends Migration
     {
         Schema::create('disciplina_professores', function (Blueprint $table) {
             $table->id();
-            $table->integer('posicao');
+            $table->integer('posicao')->nullable();
             $table->integer('pontos');
             $table->string('status')->nullable();
 

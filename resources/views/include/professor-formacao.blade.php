@@ -82,7 +82,9 @@
                         <div class='col'>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <a href='javascript: void(0);' onclick='editFomacao(`+value.id+`)' class='btn btn-outline-primary btn-sm'>Editar</a>
-                                <a href='javascript: void(0);' onclick='delFomacao(`+value.id+`)' class='btn btn-outline-danger btn-sm'>Excluir</a>
+                                @if(\Auth::user()->type === "Admin")
+                                    <a href='javascript: void(0);' onclick='delFomacao(`+value.id+`)' class='btn btn-outline-danger btn-sm'>Excluir</a>
+                                @endif
                             </div>
                             Graduacao: <b>` + value.graduacao + `</b> - Instituição: <b>` + value.instituicao + `
                         </div>

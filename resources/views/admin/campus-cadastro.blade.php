@@ -72,7 +72,9 @@
                 <div class="col">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="{{ route('admin.campus.edit', $item->id) }}" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="{{ route('admin.campus-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
+                        @if(\Auth::user()->type === "Admin")
+                            <a href="{{ route('admin.campus-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
+                        @endif
                     </div>
                     Campus: <b>{{ $item->nome }}</b>
                 </div>

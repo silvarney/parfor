@@ -4,6 +4,7 @@
 
 @section('body_page')
 
+    @if(\Auth::user()->type === "Admin")
     <div class="shadow p-3 mb-5 bg-body rounded">
         <form @if(!isset($usuario)) action="{{ route('admin.created-usuario') }}" @else action="{{ route('admin.update-usuario') }}" @endif method="post">
             @csrf
@@ -34,6 +35,13 @@
                     <label for="cadastroUsuarioRepita" class="form-label">Repita a Senha</label>
                     <input type="password" class="form-control" id="cadastroUsuarioRepita" placeholder="*********">
                 </div>
+                <div class="col">
+                    <label for="cadastroUsuarioTipo" class="form-label">Tipo</label>
+                    <select class="form-control" aria-label="Default select example" name="type">
+                        <option @if(isset($usuario) && $usuario->type === "User") value="{{ $usuario->type }}" selected> {{ $usuario->type }} @else value="User"> User  @endif</option>
+                        <option @if(isset($usuario) && $usuario->type === "Admin") value="{{ $usuario->type }}" selected> {{ $usuario->type }} @else value="Admin"> Admin  @endif</option>
+                    </select>
+                </div>
             </div>
 
             <br>
@@ -46,6 +54,7 @@
             @endif
         </form>
     </div>
+    @endif
 
     <!--lista de formacoes do professor-->
     <div class="card listFormacoes">
@@ -60,7 +69,7 @@
                         <a href="{{ route('admin.usuario.edit', $item->id) }}" class="btn btn-outline-primary btn-sm">Editar</a>
                         <a href="{{ route('admin.usuario-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
                     </div>
-                    Nome: <b>{{ $item->name }}</b> - Email: <b>{{ $item->email }}</b>
+                    Tipo: <b>{{ $item->type }}</b> - Nome: <b>{{ $item->name }}</b> - Email: <b>{{ $item->email }}</b>
                 </div>
             </div>
             @endforeach

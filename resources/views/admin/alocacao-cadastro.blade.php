@@ -79,7 +79,9 @@
                 <div class="col">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="{{ route('admin.alocacao.edit', $item->id) }}" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="{{ route('admin.alocacao-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
+                        @if(\Auth::user()->type === "Admin")
+                            <a href="{{ route('admin.alocacao-del', ['id' => $item->id]) }}" class="btn btn-outline-danger btn-sm">Excluir</a>
+                        @endif
                     </div>
                     Edital: <b>{{ $item->edital_numero }}</b> - Posição: <b>{{ $item->posicao }}º</b> - Pontos: <b>{{ $item->pontos }}</b> - Professor: <b>{{ $item->professor_nome }}</b> - Disciplina: <b>{{ $item->disciplinas_nome }}</b>
                 </div>

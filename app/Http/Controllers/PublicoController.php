@@ -11,15 +11,18 @@ class PublicoController extends Controller
 {
     public function index()
     {
-        $editais = Edital::where('status', null)->get();
-
-        return view('home', compact('editais'));
+        return view('inicio');
     }
 
-    public function pesquisa(Request $request)
+    public function edital()
     {
         $editais = Edital::where('status', null)->get();
 
+        return view('edital', compact('editais'));
+    }
+
+    public function pesquisa($id)
+    {
         $alocacoes = DB::table('disciplina_professores')
                 ->join('editais', function ($join) {
                     $join->on('disciplina_professores.edital_id', '=', 'editais.id');
@@ -32,11 +35,11 @@ class PublicoController extends Controller
                 })
                 ->select('disciplina_professores.id', 'disciplina_professores.posicao', 'disciplina_professores.pontos', 'editais.numero as edital_numero', 'professores.nome as professor_nome', 'disciplinas.nome as disciplinas_nome')
                 ->where('disciplina_professores.status', null)
-                ->where('disciplina_professores.edital_id', $request['id'])
+                ->where('disciplina_professores.edital_id', $id)
                 ->orderBy('disciplina_professores.edital_id')
                 ->orderBy('disciplina_professores.pontos', 'desc')
                 ->get();
 
-        return view('pesquisa-edital', compact('editais', 'alocacoes'));
+        return response()->json($alocacoes);
     }
 }

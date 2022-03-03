@@ -228,7 +228,9 @@
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href='/admin/professor/relatorio/` + value.id + `' target='_blank' class='btn btn-outline-success btn-sm'>Relatório</a>
                                     <a href='/admin/professor/edit/` + value.id + `' class='btn btn-outline-primary btn-sm'>Editar</a>
-                                    <a href='/admin/professor/del/` + value.id + `' class='btn btn-outline-danger btn-sm'>Excluir</a>
+                                    @if(\Auth::user()->type === "Admin")
+                                        <a href='/admin/professor/del/` + value.id + `' class='btn btn-outline-danger btn-sm'>Excluir</a>
+                                    @endif
                                 </div>
                                 &nbsp;
                                 Professor: <b>` + value.nome + `</b> - Email: <b>` + value.email + `</b> - Cidade: <b>` + value.cidade + `

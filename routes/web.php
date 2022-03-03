@@ -10,7 +10,8 @@ Route::get('/', function () {
 });
 */
 Route::get('/', 'App\Http\Controllers\PublicoController@index')->name('index');
-Route::post('/pesquisa-edital', 'App\Http\Controllers\PublicoController@pesquisa')->name('pesquisa-edital');
+Route::get('/edital', 'App\Http\Controllers\PublicoController@edital')->name('edital');
+Route::get('/pesquisa-edital/{id}', 'App\Http\Controllers\PublicoController@pesquisa')->name('pesquisa-edital');
 
 Route::middleware(['auth'])->prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function () {
     //views

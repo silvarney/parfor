@@ -4,9 +4,13 @@
     padding-top: 3% !important;
     padding-bottom: 3% !important;
 }
+
+.bg-ufra{
+    background-color: #00420c !important;
+}
+
 .txt_ufra{
     font-size: 22px !important;
-    background-color: #00420c !important;
     color: white !important;
     padding-left: 3% !important;
 }
@@ -25,6 +29,16 @@
 
 a.logout:hover{
     cursor: pointer !important;
+}
+
+.menu-publico{
+    padding-right: 5% !important;
+    color: white !important;
+    font-size: 18px !important;
+}
+
+.menu-publico:hover{
+    color: rgb(18, 174, 247) !important;
 }
 
 .list-btn {

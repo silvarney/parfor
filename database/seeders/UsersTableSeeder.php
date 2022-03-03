@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'name'      => 'Administrador',
             'email'     => 'admin@parfor.com',
             'password'  => \Hash::make('123456'),
+            'type'      => 'Admin'
         ]);
     }
 }
