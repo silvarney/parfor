@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
     public function index()
     {
-        $list_users = User::where('status', null)->get();
+        if (Auth::user()->type === "Admin") {
+            $list_users = User::whereNull('status')->orderBy('name')->get();
+        } else {
+            $list_users = User::where('type', 'User')->whereNull('status')->orderBy('name')->get();
+        }
 
         return view('admin/usuario-cadastro', compact('list_users'));
     }
