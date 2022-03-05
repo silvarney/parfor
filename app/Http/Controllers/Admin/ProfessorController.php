@@ -29,10 +29,21 @@ class ProfessorController extends Controller
 
     public function store(Request $request)
     {
+        $isProfessor = Professor::where('cpf', $request->cpf)->first();
 
-        $professor = Professor::create($request->all());
+        if ($isProfessor) {
 
-        return redirect('/admin/professor/edit/'.$professor->id)->with('success', 'Professor cadastrado com sucesso!');
+            return redirect('/admin/professor/edit/'.$isProfessor->id);
+
+        } else {
+
+            $professor = Professor::create($request->all());
+
+            return redirect('/admin/professor/edit/'.$professor->id);
+
+        }
+
+
 
     }
 

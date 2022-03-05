@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-2">
                     <label for="alocacaoProfessor" class="form-label">Edital</label>
-                    <select class="form-select" aria-label="Default select example" name="edital_id">
+                    <select class="form-control" aria-label="Default select example" name="edital_id">
                         @foreach ($editais as $item)
                             @if((isset($alocacao) ? $alocacao->edital_id : old('edital_id')) === $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->numero }}</option>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col">
                     <label for="alocacaoProfessor" class="form-label">Disciplina</label>
-                    <select class="form-select" aria-label="Default select example" name="disciplina_id">
+                    <select class="form-control" aria-label="Default select example" name="disciplina_id">
                         @foreach ($disciplinas as $item)
                             @if((isset($alocacao) ? $alocacao->disciplina_id : old('disciplina_id')) === $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nome }}</option>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col">
                     <label for="alocacaoProfessor" class="form-label">Professor</label>
-                    <select class="form-select" aria-label="Default select example" name="professor_id">
+                    <select class="form-control" aria-label="Default select example" name="professor_id">
                         @foreach ($professores as $item)
                             @if((isset($alocacao) ? $alocacao->professor_id : old('professor_id')) === $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nome }}</option>

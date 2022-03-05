@@ -34,7 +34,7 @@ class CreateProfessoresTable extends Migration
             $table->string('portador_necessidade')->nullable();
             $table->string('status')->nullable();
 
-            $table->bigInteger('campus_id')->unsigned();
+            $table->bigInteger('campus_id')->unsigned()->nullable();
             $table->foreign('campus_id')->references('id')->on('campus')->onDelete('cascade');
 
             $table->timestamps();

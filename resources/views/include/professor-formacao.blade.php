@@ -46,9 +46,6 @@
 
 <!--lista de formacoes do professor-->
 <div class="card listFormacoes">
-    <div class="card-header">
-        Formações
-    </div>
     <div class="lista-formacao">
         <ul class="list-group" id="lista-formacao">
         </ul>

@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-4">
                     <label for="exampleFormControlInput1" class="form-label">Campus</label>
-                    <select class="form-select" aria-label="Default select example" name="campus_id">
+                    <select class="form-control" aria-label="Default select example" name="campus_id">
                         @foreach ($campus as $item)
                             @if((isset($curso) ? $curso->campus_id : old('campus_id')) === $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nome }}</option>

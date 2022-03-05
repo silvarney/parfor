@@ -43,7 +43,7 @@
                 </div>
                 <div class="col">
                     <label for="cadastroProfessorUf" class="form-label">UF</label>
-                    <select class="form-select" aria-label="Default select example" name="uf">
+                    <select class="form-control" aria-label="Default select example" name="uf">
                         <option value="PA">PA</option>
                     </select>
                 </div>

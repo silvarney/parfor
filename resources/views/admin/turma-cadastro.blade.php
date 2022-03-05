@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col">
                     <label for="exampleFormControlInput1" class="form-label">Curso</label>
-                    <select class="form-select" aria-label="Default select example" name="curso_id">
+                    <select class="form-control" aria-label="Default select example" name="curso_id">
                         @foreach ($cursos as $item)
                             @if((isset($turma) ? $turma->curso_id : old('curso_id')) === $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nome }}</option>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col">
                     <label for="exampleFormControlInput1" class="form-label">Disciplina</label>
-                    <select class="form-select" aria-label="Default select example" name="disciplina_id">
+                    <select class="form-control" aria-label="Default select example" name="disciplina_id">
                         @foreach ($disciplinas as $item)
                             @if((isset($turma) ? $turma->disciplina_id : old('disciplina_id')) === $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nome }}</option>
