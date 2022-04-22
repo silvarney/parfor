@@ -21,4 +21,13 @@ class AdminController extends Controller
     {
         return view('admin/home');
     }
+
+    public function softDelete($id, $table)
+    {
+        DB::table($table)
+            ->where('id', $id)
+            ->update(['deleted_at' => now()]);
+
+        return redirect()->back()->with('delete', 'Item excluído com sucesso!');
+    }
 }

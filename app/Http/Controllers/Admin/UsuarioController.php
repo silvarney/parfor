@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RestoreModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,14 +32,17 @@ class UsuarioController extends Controller
         return view('admin/usuario-cadastro', compact('list_users', 'usuario'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
+        if (RestoreModel::restore($user, 'name', $request->name)) {
+            return redirect('/admin/usuario')->with('success', 'Item restaurado com sucesso');
+        } else {
+            $request['password'] = Hash::make($request->password);
 
-        $request['password'] = Hash::make($request->password);
+            User::create($request->all());
 
-        User::create($request->all());
-
-        return redirect('/admin/usuario')->with('success', 'Usuário cadastrado com sucesso!');
+            return redirect('/admin/usuario')->with('success', 'Item cadastrado com sucesso!');
+        }
     }
 
     public function update(Request $request)

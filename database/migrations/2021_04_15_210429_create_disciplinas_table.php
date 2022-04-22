@@ -23,6 +23,7 @@ class CreateDisciplinasTable extends Migration
             $table->string('status')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

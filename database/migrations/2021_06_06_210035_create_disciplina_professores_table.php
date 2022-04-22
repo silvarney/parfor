@@ -29,6 +29,7 @@ class CreateDisciplinaProfessoresTable extends Migration
             $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RestoreModel;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Campus;
 use Illuminate\Http\Request;
@@ -20,8 +21,7 @@ class CursoController extends Controller
     {
         $campus = Campus::where('status', null)->get();
 
-        $list_curso = DB::table('cursos')
-                        ->join('campus', 'cursos.campus_id', 'campus.id')
+        $list_curso = Curso::join('campus', 'cursos.campus_id', 'campus.id')
                         ->where('cursos.status', null)
                         ->select('cursos.*', 'campus.nome as campus_nome')
                         ->get();
@@ -65,11 +65,14 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Curso $curso)
     {
-        Curso::create($request->all());
-
-        return redirect('/admin/curso')->with('success', 'Curso cadastrado com sucesso!');
+        if (RestoreModel::restore($curso, 'nome', $request->nome)) {
+            return redirect('/admin/curso')->with('success', 'Item restaurado com sucesso');
+        } else {
+            Curso::create($request->all());
+            return redirect('/admin/curso')->with('success', 'Item cadastrado com sucesso!');
+        }
     }
 
     /**

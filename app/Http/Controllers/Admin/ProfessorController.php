@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RestoreModel;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Campus;
 use Illuminate\Http\Request;
@@ -27,8 +28,9 @@ class ProfessorController extends Controller
         return view('admin/professor-cadastro', compact('campus', 'professor', 'lista_professores'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Professor $professor)
     {
+
         $isProfessor = Professor::where('cpf', $request->cpf)->first();
 
         if ($isProfessor) {
@@ -36,15 +38,14 @@ class ProfessorController extends Controller
             return redirect('/admin/professor/edit/'.$isProfessor->id);
 
         } else {
+            if (RestoreModel::restore($professor, 'cpf', $request->cpf)) {
+                return redirect('/admin/professor')->with('success', 'Item restaurado com sucesso');
+            } else {
+                $professor = Professor::create($request->all());
 
-            $professor = Professor::create($request->all());
-
-            return redirect('/admin/professor/edit/'.$professor->id);
-
+                return redirect('/admin/professor/edit/'.$professor->id);
+            }
         }
-
-
-
     }
 
     public function update(Request $request)

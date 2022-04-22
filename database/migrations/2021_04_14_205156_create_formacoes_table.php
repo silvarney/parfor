@@ -26,6 +26,7 @@ class CreateFormacoesTable extends Migration
             $table->foreign('professor_id')->references('id')->on('professores')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

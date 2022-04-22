@@ -26,6 +26,7 @@ class CreateCursosTable extends Migration
             $table->foreign('campus_id')->references('id')->on('campus')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

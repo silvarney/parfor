@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RestoreModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -25,13 +26,14 @@ class DisciplinaController extends Controller
         return view('admin/disciplina-cadastro', compact('list_disciplinas','disciplina'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Disciplina $disciplina)
     {
-
-        Disciplina::create($request->all());
-
-        return redirect('/admin/disciplina')->with('success', 'Disciplina cadastrada com sucesso!');
-
+        if (RestoreModel::restore($disciplina, 'nome', $request->nome)) {
+            return redirect('/admin/disciplina')->with('success', 'Item restaurado com sucesso');
+        } else {
+            Disciplina::create($request->all());
+            return redirect('/admin/disciplina')->with('success', 'Item cadastrada com sucesso!');
+        }
     }
 
     public function update(Request $request)
@@ -43,13 +45,4 @@ class DisciplinaController extends Controller
         return redirect('/admin/disciplina')->with('success', 'Disciplina alterada com sucesso');
 
     }
-
-    public function destroy($id)
-    {
-        Disciplina::where('id', $id)->update(['status' => 'desativado']);
-
-        return redirect('admin/disciplina')->with('delete', 'Disciplina desativado com sucesso!');
-
-    }
-
 }

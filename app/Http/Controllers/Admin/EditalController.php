@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RestoreModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Edital;
@@ -42,11 +43,14 @@ class EditalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Edital $edital)
     {
-        Edital::create($request->all());
-
-        return redirect('/admin/edital')->with('success', 'Edital cadastrado com sucesso');
+        if (RestoreModel::restore($edital, 'numero', $request->numero)) {
+            return redirect('/admin/edital')->with('success', 'Item restaurado com sucesso');
+        } else {
+            Edital::create($request->all());
+            return redirect('/admin/edital')->with('success', 'Item cadastrado com sucesso');
+        }
     }
 
     /**
@@ -78,16 +82,4 @@ class EditalController extends Controller
         return redirect('/admin/edital')->with('success', 'Edital cadastrado com sucesso');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        Edital::where('id', $id)->update(['status' => 'desativado']);
-
-        return redirect('admin/edital')->with('delete', 'Edital desativado com sucesso!');
-    }
 }

@@ -245,7 +245,7 @@
                                     <a href='/admin/professor/relatorio/` + value.id + `' target='_blank' class='btn btn-outline-success btn-sm'>Relatório</a>
                                     <a href='/admin/professor/edit/` + value.id + `' class='btn btn-outline-primary btn-sm'>Editar</a>
                                     @if(\Auth::user()->type === "Admin")
-                                        <a href='/admin/professor/del/` + value.id + `' class='btn btn-outline-danger btn-sm'>Excluir</a>
+                                        <a href='/admin/delete/` + value.id + `/professores' class='btn btn-outline-danger btn-sm'>Excluir</a>
                                     @endif
                                 </div>
                                 &nbsp;

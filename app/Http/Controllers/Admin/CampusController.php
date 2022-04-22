@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RestoreModel;
 use App\Providers\JsonServiceProvider as JsonFile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,12 +29,17 @@ class CampusController extends Controller
         return view('admin/campus-cadastro', compact('list_campus', 'campus', 'cidades'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Campus $campus)
     {
-        $request['cidade'] = $request->nome;
-        Campus::create($request->all());
+        if (RestoreModel::restore($campus, 'cidade', $request->nome)) {
+            return redirect('/admin/campus')->with('success', 'Item restaurado com sucesso');
+        } else {
+            $request['cidade'] = $request->nome;
+            Campus::create($request->all());
 
-        return redirect('/admin/campus')->with('success', 'Campus cadastrado com sucesso');
+            return redirect('/admin/campus')->with('success', 'Item cadastrado com sucesso');
+        }
+
     }
 
     public function show($id)
@@ -53,10 +59,4 @@ class CampusController extends Controller
 
     }
 
-    public function destroy($id)
-    {
-        Campus::where('id', $id)->update(['status' => 'desativado']);
-
-        return redirect('admin/campus')->with('delete', 'Campus desativado com sucesso!');
-    }
 }

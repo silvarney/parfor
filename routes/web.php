@@ -16,6 +16,7 @@ Route::get('/pesquisa-edital/{id}', 'App\Http\Controllers\PublicoController@pesq
 Route::middleware(['auth'])->prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function () {
     //views
     Route::get('/', 'AdminController@index');
+    Route::get('/delete/{id}/{table}', 'AdminController@softDelete')->name('admin.delete');
     Route::get('/campus', 'CampusController@index')->name('admin.campus');
     Route::get('/campus/edit/{id}', 'CampusController@edit')->name('admin.campus.edit');
     Route::get('/edital', 'EditalController@index')->name('admin.edital');
