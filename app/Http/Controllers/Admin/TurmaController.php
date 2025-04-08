@@ -19,6 +19,7 @@ class TurmaController extends Controller
                         ->join('cursos', 'turmas.curso_id', 'cursos.id')
                         ->join('disciplinas', 'turmas.disciplina_id', 'disciplinas.id')
                         ->select('turmas.*', 'cursos.nome as curso_nome', 'disciplinas.nome as disciplina_nome')
+                        ->whereNull('turmas.deleted_at')
                         ->get();
 
         $disciplinas = Disciplina::where('status', null)->get();
@@ -64,5 +65,12 @@ class TurmaController extends Controller
 
         return redirect('/admin/turma')->with('success', 'Turma alterada com sucesso');
 
+    }
+
+    public function destroy($id)
+    {
+        Turma::where('id', $id)->delete();
+
+        return redirect('admin/turma')->with('delete', 'Turma desativada com sucesso!');
     }
 }
