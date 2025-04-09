@@ -36,6 +36,7 @@ class TurmaController extends Controller
         $list_turmas = $turma->join('cursos', 'turmas.curso_id', 'cursos.id')
                             ->join('disciplinas', 'turmas.disciplina_id', 'disciplinas.id')
                             ->select('turmas.*', 'cursos.nome as curso_nome', 'disciplinas.nome as disciplina_nome')
+                            ->groupBy('turmas.nome')
                             ->get();
 
         $turma = $turma->find($id);
@@ -47,14 +48,17 @@ class TurmaController extends Controller
         return view('admin/turma-cadastro', compact('list_turmas', 'turma', 'disciplinas', 'cursos'));
     }
 
-    public function store(Request $request, Turma $turma)
+    public function store(Request $request)
     {
-        if (RestoreModel::restore($turma, 'nome', $request->nome)) {
-            return redirect('/admin/turma')->with('success', 'Item restaurado com sucesso');
-        } else {
-            Turma::create($request->all());
-            return redirect('/admin/turma')->with('success', 'Item cadastrada com sucesso!');
-        }
+
+        $turma = new Turma();
+        $turma->nome = $request->nome;
+        $turma->curso_id = $request->curso_id;
+        $turma->disciplina_id = $request->disciplina_id;
+        $turma->save();
+
+        return redirect('/admin/turma')->with('success', 'Turma cadastrada com sucesso!');
+
     }
 
     public function update(Request $request)

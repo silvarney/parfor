@@ -32,6 +32,7 @@ class AlocacaoController extends Controller
                     $join->on('disciplina_professores.disciplina_id', '=', 'disciplinas.id');
                 })
                 ->select('disciplina_professores.id', 'disciplina_professores.posicao', 'disciplina_professores.pontos', 'editais.numero as edital_numero', 'professores.nome as professor_nome', 'disciplinas.nome as disciplinas_nome')
+                ->whereNull('disciplina_professores.deleted_at')
                 ->orderBy('disciplina_professores.edital_id')
                 ->orderBy('disciplina_professores.posicao', 'asc')
                 ->get();

@@ -50,16 +50,26 @@ class RelatorioController extends Controller
     {
         $professor = Professor::find($id);
         $formacoes = Formacao::where('professor_id', $id)->get();
-        $editais = Edital::join('disciplina_professores', 'editais.id', 'disciplina_professores.professor_id')
-                        ->select('editais.*', 'disciplina_professores.pontos')
-                        ->where('disciplina_professores.professor_id', $id)
-                        ->get();
+        $editais = Edital::join('disciplina_professores', 'editais.id', 'disciplina_professores.edital_id')
+                ->select('editais.*', 'disciplina_professores.pontos')
+                ->where('disciplina_professores.professor_id', $id)
+                ->whereNull('disciplina_professores.deleted_at')
+                ->distinct()
+                ->orderBy('editais.numero', 'asc')
+                ->get();
         $disciplinas = Disciplina::join('disciplina_professores', 'disciplinas.id', 'disciplina_professores.disciplina_id')
                         ->select('disciplinas.*')
                         ->where('disciplina_professores.professor_id', $id)
+                        ->whereNull('disciplina_professores.deleted_at')
                         ->get();
-        $turmas = Turma::whereIn('disciplina_id', array_column($disciplinas->toArray(), 'id'))->get();
-        $cursos = Curso::whereIn('id', array_column($turmas->toArray(), 'curso_id'))->get();
+        $disciplinas_ids = array_column($disciplinas->toArray(), 'id');
+        $turmas = Turma::selectRaw('DISTINCT nome, curso_id')
+              ->whereIn('disciplina_id', array_values($disciplinas_ids))
+              ->orderBy('nome')
+              ->get();
+        $turmas_ids = array_column($turmas->toArray(), 'curso_id');
+
+        $cursos = Curso::whereIn('id', array_values($turmas_ids))->get();
 
         $string = $professor['nome'].'-'.now();
 

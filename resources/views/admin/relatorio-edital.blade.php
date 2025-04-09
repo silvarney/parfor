@@ -60,7 +60,7 @@
         <p>EDITAL</p>
         <hr>
         <p>Número: <strong>{{ $edital->numero }}</strong> &nbsp; Título: <strong>{{ $edital->titulo }}</strong></p>
-        <p>Pontos: <strong>{{ $edital->pontos }}</strong> &nbsp; Abertura: <strong>{{ $edital->abertura }}</strong> &nbsp; Término: <strong>{{ $edital->termino }}</strong></p>
+        <p>Abertura: <strong>{{ $edital->abertura }}</strong> &nbsp; Término: <strong>{{ $edital->termino }}</strong></p>
 
         <br>
         <p>PROFESSORES</p>
