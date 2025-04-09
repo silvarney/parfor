@@ -26,15 +26,21 @@ class RelatorioController extends Controller
                                 ->select('professores.*', 'disciplina_professores.posicao', 'disciplina_professores.pontos')
                                 ->where('disciplina_professores.edital_id', $id)
                                 ->orderBy('disciplina_professores.pontos', 'desc')
+                                ->whereNull('disciplina_professores.deleted_at')
                                 ->get();
 
         $disciplinas = Disciplina::join('disciplina_professores', 'disciplinas.id', 'disciplina_professores.disciplina_id')
                                 ->select('disciplinas.*')
                                 ->where('disciplina_professores.edital_id', $id)
+                                ->whereNull('disciplina_professores.deleted_at')
                                 ->distinct()
                                 ->get();
 
-        $turmas = Turma::whereIn('disciplina_id', array_column($disciplinas->toArray(), 'id'))->get();
+        $disciplinas_ids = array_column($disciplinas->toArray(), 'id');
+        $turmas = Turma::selectRaw('DISTINCT nome, curso_id')
+                                ->whereIn('disciplina_id', array_values($disciplinas_ids))
+                                ->orderBy('nome')
+                                ->get();
 
         $cursos = Curso::whereIn('id', array_column($turmas->toArray(), 'curso_id'))->get();
 

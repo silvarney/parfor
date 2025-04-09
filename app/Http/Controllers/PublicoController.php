@@ -36,6 +36,7 @@ class PublicoController extends Controller
                 ->select('disciplina_professores.id', 'disciplina_professores.posicao', 'disciplina_professores.pontos', 'editais.numero as edital_numero', 'professores.nome as professor_nome', 'disciplinas.nome as disciplinas_nome')
                 ->where('disciplina_professores.status', null)
                 ->where('disciplina_professores.edital_id', $id)
+                ->whereNull('disciplina_professores.deleted_at')
                 ->orderBy('disciplina_professores.edital_id')
                 ->orderBy('disciplina_professores.pontos', 'desc')
                 ->get();
